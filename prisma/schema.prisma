@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model numberstable {
+  uid              String     @id(map: "NumbersTable_pkey") @db.VarChar(20)
+  telephone_number String     @db.VarChar(20)
+  has_whatsapp     Boolean    @default(false)
+  user_uid         String     @db.VarChar(10)
+  date_added       DateTime   @db.Date
+  date_modified    DateTime   @db.Date
+  userstable       userstable @relation(fields: [user_uid], references: [user_uid], onDelete: NoAction, onUpdate: NoAction, map: "fk_numberstable_userstable")
+}
+
+model userstable {
+  user_uid      String         @id(map: "UsersTable_pkey") @db.VarChar(10)
+  username      String         @db.VarChar(255)
+  password      String         @db.VarChar(255)
+  full_name     String         @db.VarChar(255)
+  api_key       String         @db.VarChar(255)
+  date_added    DateTime       @db.Date
+  date_modified DateTime       @db.Date
+  numberstable  numberstable[]
+}
