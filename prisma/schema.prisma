@@ -21,8 +21,8 @@ model userstable {
   user_uid      String         @id(map: "UsersTable_pkey") @db.VarChar(10)
   username      String         @db.VarChar(255)
   password      String         @db.VarChar(255)
-  full_name     String         @db.VarChar(255)
-  api_key       String         @db.VarChar(255)
+  full_name     String?        @db.VarChar(255)
+  api_key       String?        @db.VarChar(255)
   date_added    DateTime       @db.Date
   date_modified DateTime       @db.Date
   numberstable  numberstable[]
