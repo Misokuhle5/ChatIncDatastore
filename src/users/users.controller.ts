@@ -26,3 +26,5 @@ export class UsersController {
     //     return this.usersService.updateUser(id, updateUserDto);
     // }    
 }
+
+//test get method 

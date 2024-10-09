@@ -20,6 +20,15 @@ export class UsersService {
             date_added: new Date(),
             date_modified: new Date(),
         }
+        console.log("Inserting user:", {
+            user_uid: 'user1', // Should be 10 characters or less
+            username: 'zaazuh', // Should be 255 characters or less
+            password: '12345', // Should be 255 characters or less
+            full_name: 'Zahraa Osman', // Should be 255 characters or less
+            api_key: 'placeholder54321', // Should be 255 characters or less
+            date_added: new Date(),
+            date_modified: new Date()
+          });
         return this.prisma.userstable.create({
             data: newUserData,
         });

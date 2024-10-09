@@ -12,8 +12,8 @@ model numberstable {
   telephone_number String     @db.VarChar(20)
   has_whatsapp     Boolean    @default(false)
   user_uid         String     @db.VarChar(10)
-  date_added       DateTime   @db.Date
-  date_modified    DateTime   @db.Date
+  date_added       DateTime   @db.Timestamp // Use @db.Timestamp for PostgreSQL
+  date_modified    DateTime   @db.Timestamp // Use @db.Timestamp for PostgreSQL
   userstable       userstable @relation(fields: [user_uid], references: [user_uid], onDelete: NoAction, onUpdate: NoAction, map: "fk_numberstable_userstable")
 }
 
@@ -23,7 +23,8 @@ model userstable {
   password      String         @db.VarChar(255)
   full_name     String?        @db.VarChar(255)
   api_key       String?        @db.VarChar(255)
-  date_added    DateTime       @db.Date
-  date_modified DateTime       @db.Date
+  date_added    DateTime       @db.Timestamp // Use @db.Timestamp for PostgreSQL
+  date_modified DateTime       @db.Timestamp // Use @db.Timestamp for PostgreSQL
   numberstable  numberstable[]
 }
+

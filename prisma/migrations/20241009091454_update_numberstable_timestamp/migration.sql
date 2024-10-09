@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "numberstable" ALTER COLUMN "date_added" SET DATA TYPE TIMESTAMP,
+ALTER COLUMN "date_modified" SET DATA TYPE TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "userstable" ALTER COLUMN "date_added" SET DATA TYPE TIMESTAMP,
+ALTER COLUMN "date_modified" SET DATA TYPE TIMESTAMP;
