@@ -12,23 +12,14 @@ export class UsersService {
         const user_uid = uuidv4();
         const api_key = uuidv4();
         const newUserData: Prisma.userstableCreateInput = {
-            user_uid,
-            username,
-            password,
-            full_name,
-            api_key,
+            user_uid: 'test8', // Should be 10 characters or less
+            username: 'zaa', // Should be 255 characters or less
+            password: '97', // Should be 255 characters or less
+            full_name: 'Zahraa O', // Should be 255 characters or less
+            api_key: 'gv96', // Should be 255 characters or less
             date_added: new Date(),
             date_modified: new Date(),
         }
-        console.log("Inserting user:", {
-            user_uid: 'user1', // Should be 10 characters or less
-            username: 'zaazuh', // Should be 255 characters or less
-            password: '12345', // Should be 255 characters or less
-            full_name: 'Zahraa Osman', // Should be 255 characters or less
-            api_key: 'placeholder54321', // Should be 255 characters or less
-            date_added: new Date(),
-            date_modified: new Date()
-          });
         return this.prisma.userstable.create({
             data: newUserData,
         });
