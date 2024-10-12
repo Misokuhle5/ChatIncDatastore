@@ -10,6 +10,7 @@ export class UsersController {
     @Post('register')
     async createUser(@Body() createUserDto: { username: string, password: string, full_name: string }
     ) {
+        console.log('Request body:', createUserDto); // Add this line to debug the incoming request
         const { username, password, full_name } = createUserDto;
         return this.usersService.createUser(username, password, full_name);
     }

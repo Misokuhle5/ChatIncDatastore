@@ -8,17 +8,26 @@ export class UsersService {
     constructor(private prisma: PrismaService) {}
 
     async createUser(username: string, password: string, full_name: string): Promise<userstable> {
-        // Generate unique user_uid and API key using uuidv4
-        const user_uid = uuidv4();
+        const userCount = await this.prisma.userstable.count(); // Get the current number of users
+        const user_uid = `user${userCount + 1}`; // Generate an ID like 'user1', 'user2', etc.
         const api_key = uuidv4();
+        // Automatically set the current date and time
+        const date_added = new Date();
+        const date_modified = new Date();
+
+        // validation check
+        if (username.length > 255 || password.length > 255 || full_name.length > 255) {
+            throw new Error('Input exceeds allowed column length');
+        }
+
         const newUserData: Prisma.userstableCreateInput = {
-            user_uid: 'test8', // Should be 10 characters or less
-            username: 'zaa', // Should be 255 characters or less
-            password: '97', // Should be 255 characters or less
-            full_name: 'Zahraa O', // Should be 255 characters or less
-            api_key: 'gv96', // Should be 255 characters or less
-            date_added: new Date(),
-            date_modified: new Date(),
+            user_uid,
+            username,
+            password,
+            full_name,
+            api_key,
+            date_added,
+            date_modified
         }
         return this.prisma.userstable.create({
             data: newUserData,
